@@ -5,10 +5,6 @@ library(tidyverse)
 View(diamonds)
 
 colnames(diamonds)
-
-diamonds %>% group_by(cut) %>% count(cut)
- 
-diamonds %>% group_by(cut) %>% count(color) 
   
 diamonds %>% arrange(price)
 
@@ -59,9 +55,3 @@ under_three %>% count()
   count()
  
  
- 
-
-
-
-
-
