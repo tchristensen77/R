@@ -54,4 +54,24 @@ under_three %>% count()
   group_by(cut) %>% 
   count()
  
+ ## The most of the diamond's clarity were classified as SI1 with 13065, followed closely by VS2 with 12258.
+ ## For cut, Ideal has the most by far at 21551, and then went in descending order matching the cut Premium- 13791, Very Good- 12082 Good- 4906 and in last Fair- 1610
  
+ ## Next I wanted to learn what the mean and median prices were.
+ 
+mean(diamonds$price)
+[1] 3932.8
+
+median(diamonds$price)
+[1] 2401
+
+## This lead me to question what the mean and median carat sizes were.
+
+mean(diamonds$carat)
+[1] 0.7979397
+
+median(diamonds$carat)
+[1] 0.7
+
+IQR(diamonds$carat)
+[1] 0.64
