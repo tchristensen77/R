@@ -1,0 +1,67 @@
+## In this file, I will be using the Diamonds dataset included in RStudio to practice R and analyze data.
+
+library(tidyverse)
+
+View(diamonds)
+
+colnames(diamonds)
+
+diamonds %>% group_by(cut) %>% count(cut)
+ 
+diamonds %>% group_by(cut) %>% count(color) 
+  
+diamonds %>% arrange(price)
+
+diamonds %>% arrange(desc(price))
+
+##  I wanted to create a plot to look at the relationship of price and cut
+
+ggplot(diamonds) + 
+  geom_point(mapping = aes(x = carat, y = price))
+
+## This plot was too crowded so next I broke it down by cut.
+
+ggplot(diamonds) + 
+  geom_point(mapping = aes(x = carat, y = price)) + 
+  facet_wrap(~cut)
+
+## Next we added color to the color variable
+
+ggplot(diamonds) + 
+  geom_point(mapping = aes(x = carat, y = price, color = color)) + 
+  facet_wrap(~cut)
+  
+## This helped show how the diamonds color impacted the price as well as the cut. 
+## It appeared that most of the diamonds where in the 0-3 carat range. 
+## So I decided to filter out the diamonds that where above 4 carats so the plots would be easier to read.
+
+under_three <- diamonds %>% filter(carat<3.00) 
+
+ggplot(under_three) + 
+  geom_point(mapping = aes(x = carat, y = price, color = color)) + 
+  facet_wrap(~cut)
+  
+## This helped show off the range of diamonds by a marginal amount, which made me question how many diamonds fell in the above 3 carat range.
+
+under_three %>% count()
+
+ diamonds %>% count()
+ 
+ ## This showed that there was only a total of 40 diamonds in that range.
+ ## Next I wanted to discover how many diamonds where in each cut and clarity category.
+ 
+ diamonds %>% 
+  group_by(clarity) %>% 
+  count()
+ 
+ diamonds %>% 
+  group_by(cut) %>% 
+  count()
+ 
+ 
+ 
+
+
+
+
+
