@@ -1,4 +1,4 @@
-## In this file, I will be using the Diamonds dataset included in RStudio to practice R and analyze data.
+## In this file, I will be using the Diamonds dataset included in RStudio to practice R and EDA.
 
 library(tidyverse)
 
@@ -75,3 +75,5 @@ median(diamonds$carat)
 
 IQR(diamonds$carat)
 [1] 0.64
+
+
