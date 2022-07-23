@@ -1,0 +1,23 @@
+## Dataset was downloaded from Kaggle.
+## This project is focused on completing exporitory data analysis on a dataset containing Nexflix tv show and movie data
+
+## Setting up the environment
+
+install.packages("tidyverse")
+install.packages("palmerpenguins")
+install.packages("janitor")
+install.packages("skimr")
+
+## Importing the datasets
+
+library(readr)
+credits <- read_csv("Downloads/archive/credits.csv")
+
+library(readr)
+titles <- read_csv("Downloads/archive/titles.csv")
+
+head(credits)
+head(titles)
+
+summary(credits)
+summary(titles)
