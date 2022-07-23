@@ -1,14 +1,20 @@
 ## Dataset was downloaded from Kaggle.
 ## This project is focused on completing exporitory data analysis on a dataset containing Nexflix tv show and movie data
 
+## Questions I want answered:
+## How has ratings changes over the years?
+
 ## Setting up the environment
 
 install.packages("tidyverse")
-install.packages("palmerpenguins")
 install.packages("janitor")
 install.packages("skimr")
 
 ## Importing the datasets
+
+library(tidyverse)
+library(janitor)
+library(skimr)
 
 library(readr)
 credits <- read_csv("Downloads/archive/credits.csv")
@@ -21,3 +27,30 @@ head(titles)
 
 summary(credits)
 summary(titles)
+
+titles %>% group_by(type) %>% count()
+  <chr> <int>
+1 MOVIE  3759
+2 SHOW   2047
+
+titles %>% group_by(type) %>% count(age_certification)
+
+type  age_certification     n
+   <chr> <chr>             <int>
+ 1 MOVIE G                   131
+ 2 MOVIE NC-17                14
+ 3 MOVIE PG                  246
+ 4 MOVIE PG-13               440
+ 5 MOVIE R                   575
+ 6 MOVIE NA                 2353
+ 7 SHOW  TV-14               470
+ 8 SHOW  TV-G                 76
+ 9 SHOW  TV-MA               841
+10 SHOW  TV-PG               186
+11 SHOW  TV-Y                105
+12 SHOW  TV-Y7               112
+13 SHOW  NA                  257
+
+titles %>% arrange(release_year) %>% group_by(release_year) %>% count()
+
+
