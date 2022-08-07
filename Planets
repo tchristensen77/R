@@ -116,3 +116,5 @@ mean(planets_df$diameter)
 mean(planets_df$rotation)
 
 [1] -22.695
+
+
