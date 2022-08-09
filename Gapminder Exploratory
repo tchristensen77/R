@@ -102,3 +102,29 @@ gapminder %>%
  9 Canada         Americas   1952    68.8  14785584    11367. 1.68e11
 10 Brazil         Americas   1952    50.9  56602560     2109. 1.19e11
 # … with 132 more rows
+
+
+## Visualizing life expectancy and pop for countries in 1952
+
+gapminder_1952 <- gapminder %>%
+  filter(year == 1952)
+
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp)) +
+  geom_point() +
+  scale_x_log10()
+  
+## Visualizing population and gdpPercap by continent
+
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp, color = continent)) +
+  geom_point() +
+  scale_x_log10()
+  
+ggplot(gapminder_1952, aes(x = pop, y = lifeExp)) +
+  geom_point() +
+  scale_x_log10() +
+  facet_wrap(~continent)
+  
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) +
+  geom_point() +
+  scale_x_log10() +
+  facet_wrap(~year)
