@@ -176,3 +176,10 @@ by_continent <- gapminder %>%
 
 
 ggplot(by_continent, aes(x=continent, y=medianGdpPercap)) + geom_col()
+
+# Created a boxplot comparing gdpPercap among continents
+
+gapminder_1952 <- gapminder %>%
+  filter(year == 1952)
+
+ggplot(gapminder_1952, aes(x=continent, y=gdpPercap)) + geom_boxplot() + scale_y_log10()
