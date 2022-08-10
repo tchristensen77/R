@@ -119,12 +119,60 @@ ggplot(gapminder_1952, aes(x = pop, y = lifeExp, color = continent)) +
   geom_point() +
   scale_x_log10()
   
+## Population and Life Expectancy in 1952, facet by continent
+  
 ggplot(gapminder_1952, aes(x = pop, y = lifeExp)) +
   geom_point() +
   scale_x_log10() +
   facet_wrap(~continent)
   
+## GDP per cap and Life Expectany by continent facet by year
+  
 ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent, size = pop)) +
   geom_point() +
   scale_x_log10() +
   facet_wrap(~year)
+  
+## Median life expectancy and max GDP per cap by year 
+
+gapminder %>%
+  group_by(year) %>%
+  summarize(medianLifeExp = median(lifeExp), maxGdpPercap = max(gdpPercap))
+
+# A tibble: 12 × 3
+    year medianLifeExp maxGdpPercap
+   <int>         <dbl>        <dbl>
+ 1  1952          45.1      108382.
+ 2  1957          48.4      113523.
+ 3  1962          50.9       95458.
+ 4  1967          53.8       80895.
+ 5  1972          56.5      109348.
+ 6  1977          59.7       59265.
+ 7  1982          62.4       33693.
+ 8  1987          65.8       31541.
+ 9  1992          67.7       34933.
+10  1997          69.4       41283.
+11  2002          70.8       44684.
+12  2007          71.9       49357.
+
+## Creating objecting of median GDP by year and continent
+
+by_year_continent <- gapminder %>% 
+  group_by(year, continent) %>% 
+  summarize(medianGdpPercap = median(gdpPercap))
+        
+## Visualizing by_year_continent
+
+ggplot(by_year_continent, aes(x = year, y = medianGdpPercap, color = continent)) + 
+  geom_line() + 
+  expand_limits(y = 0)
+  
+## Visualizing median GDP per cap by continent in 1952
+
+by_continent <- gapminder %>% 
+  filter(year == 1952) %>% 
+  group_by(continent) %>% 
+  summarize(medianGdpPercap = median(gdpPercap))
+
+
+ggplot(by_continent, aes(x=continent, y=medianGdpPercap)) + geom_col()
